@@ -1,0 +1,1411 @@
+
+
+HI-TECH Software PICC Macro Assembler V9.65 build 4410 
+                                                      Sat Apr 03 13:51:36 2010
+
+HI-TECH Software Omniscient Code Generator build 4410
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code 
+                                 Generator build 4410"
+     2                           
+     3                           	processor	16F84A
+     4                           clrc	macro
+     5                           	bcf	status,0
+     6  0000                     	endm
+     7                           clrz	macro
+     8                           	bcf	status,2
+     9  0000                     	endm
+    10                           setc	macro
+    11                           	bsf	status,0
+    12  0000                     	endm
+    13                           setz	macro
+    14                           	bsf	status,2
+    15  0000                     	endm
+    16                           skipc	macro
+    17                           	btfss	status,0
+    18  0000                     	endm
+    19                           skipz	macro
+    20                           	btfss	status,2
+    21  0000                     	endm
+    22                           skipnc	macro
+    23                           	btfsc	status,0
+    24  0000                     	endm
+    25                           skipnz	macro
+    26                           	btfsc	status,2
+    27  0000                     	endm
+    28  0000                     indf	equ	0
+    29  0000                     indf0	equ	0
+    30  0000                     pc	equ	2
+    31  0000                     pcl	equ	2
+    32  0000                     status	equ	3
+    33  0000                     fsr	equ	4
+    34  0000                     fsr0	equ	4
+    35  0000                     c	equ	1
+    36  0000                     z	equ	0
+    37  0000                     pclath	equ	10
+    38                           global __tempreg
+    39  0000                     __tempreg	set	12
+    40                           global __Lrbss_0, __Hrbss_0
+    41  0000                     __Lrbss_0 set 0x4C
+    42  0000                     __Hrbss_0 set 0x4E
+    43                           global __Lrdata_0, __Hrdata_0
+    44  0000                     __Lrdata_0	equ	0x0
+    45  0000                     __Hrdata_0	equ	0x1
+    46                           global __Lramdata, __Lrdata_0, __Hramdata, __Hr
+                                 data_0
+    47  0000                     __Lramdata	set	__Lrdata_0
+    48  0000                     __Hramdata	set	__Hrdata_0
+    49                           	GLOBAL	__databank
+    50  0000                     __databank	EQU	0
+    51  0000                     _main_dir	equ	??_main+0
+    52                           	global	_main_dir
+    53  0000                     _delay_n	equ	??_delay+0
+    54                           	global	_delay_n
+    55  0000                     _delay_i	equ	?_delay+0
+    56                           	global	_delay_i
+    57                           ;Data sizes: Strings 0, constant 0, data 0, bss
+                                  0, persistent 0 stack 13
+    58                           	global	_main
+    59                           	global	??_main
+    60                           	global	?_main
+    61                           
+    62                           ; *************** function _main **************
+                                 *
+    63                           ; Defined at:
+    64                           ;		line 18 in file "C:\Documents and Settings\N
+                                 eo\My Documents\mplab\vision\vision.c"
+    65                           ; Parameters:
+    66                           ;		None
+    67                           ; Auto variables:
+    68                           ;		dir         	       	type: int 
+    69                           ; Return value:
+    70                           ;		type: void 
+    71                           ;		size: 0
+    72                           ; Registers used:
+    73                           ;		wreg, fsr0l, fsr0h, status,2, status,0, pcla
+                                 th, cstack
+    74                           ; Tracked objects:
+    75                           ;		On entry : BFF/0
+    76                           ;		On exit  : 0/0
+    77                           ;		Unchanged: 0/0
+    78                           ; Data sizes:
+    79                           ;		Autos:    2
+    80                           ;		Params:   0
+    81                           ;		Temp:     2
+    82                           ;		Total:    4
+    83                           ; This function calls:
+    84                           ;		_delay
+    85                           ;		_leftturn
+    86                           ;		_linefollow
+    87                           ;		_rightturn
+    88                           ;		_straight
+    89                           ; This function is called by:
+    90                           ;		Startup code after reset
+    91                           ; This function uses a non-reentrant model
+    92                           ; 
+    93                           	psect	maintext,class=CODE,delta=2
+    94                           	file	"C:\Documents and Settings\Neo\My Documen
+                                 ts\mplab\vision\vision.c"
+    95                           	line	18
+    96                           ;vision.c: 2: volatile unsigned char PORTA @ 0x
+                                 05;
+    97                           ;vision.c: 3: volatile unsigned char PORTB @ 0x
+                                 06;
+    98                           ;vision.c: 4: volatile unsigned char TRISA @ 0x
+                                 85;
+    99                           ;vision.c: 5: volatile unsigned char TRISB @ 0x
+                                 86;
+   100                           ;vision.c: 11: void delay(int i);
+   101                           ;vision.c: 12: void rightturn();
+   102                           ;vision.c: 13: void leftturn();
+   103                           ;vision.c: 14: void straight();
+   104                           ;vision.c: 15: void linefollow();
+   105                           ;vision.c: 16: int got=0;
+   106                           ;vision.c: 17: void main()
+   107                           ;vision.c: 18: {
+   108                           	
+   109  000D                     _main:	
+   110                           	opt stack 8
+   111                           ; Regs used in _main: [wreg-fsr0h+status,2+stat
+                                 us,0+pclath+cstack]
+   112                           	line	19
+   113                           ;vision.c: 19: int dir=0;
+   114  000D  3000               	movlw	low(0)
+   115                           	
+   116  000E  008C               	movwf	(_main_dir)
+   117  000F  3000               	movlw	high(0)
+   118  0010  008D               	movwf	((_main_dir))+1
+   119                           	line	20
+   120                           ;vision.c: 20: TRISB = 48;
+   121  0011  3030               	movlw	(030h)
+   122  0012  1683               	bsf	status, 5	;RP0=1, select bank1
+   123                           	
+   124  0013  0086               	movwf	(134)^080h	;volatile
+   125                           	line	21
+   126                           ;vision.c: 21: TRISA = 0x0F;
+   127  0014  300F               	movlw	(0Fh)
+   128                           	
+   129  0015  0085               	movwf	(133)^080h	;volatile
+   130                           	line	22
+   131                           ;vision.c: 22: PORTA = 0;
+   132  0016  1003               	clrc
+   133  0017  1283               	bcf	status, 5	;RP0=0, select bank0
+   134                           	
+   135  0018  3000               	movlw	0
+   136  0019  1803               	btfsc	status,0
+   137  001A  3001               	movlw	1
+   138  001B  0085               	movwf	(5)	;volatile
+   139                           	line	23
+   140                           ;vision.c: 23: PORTB = 0;
+   141  001C  1003               	clrc
+   142                           	
+   143  001D  3000               	movlw	0
+   144  001E  1803               	btfsc	status,0
+   145  001F  3001               	movlw	1
+   146  0020  0086               	movwf	(6)	;volatile
+   147                           	line	94
+   148                           ;vision.c: 94: while(1){
+   149                           	
+   150  0021                     l3:	
+   151                           	line	95
+   152                           ;vision.c: 95: PORTB = 0|4;
+   153  0021  3004               	movlw	(04h)
+   154  0022  1283               	bcf	status, 5	;RP0=0, select bank0
+   155                           	
+   156  0023  0086               	movwf	(6)	;volatile
+   157                           	line	96
+   158                           ;vision.c: 96: while((PORTB&48)!=0)
+   159  0024  2825               	goto	l5
+   160                           	line	98
+   161                           ;vision.c: 97: {
+   162                           	
+   163  0025                     l5:	
+   164                           	line	96
+   165                           	
+   166  0025  0806               	movf	(6),w	;volatile
+   167                           	
+   168  0026  3930               	andlw	030h
+   169  0027  1D03               	btfss	status,2
+   170  0028  282A               	goto	u931
+   171  0029  282B               	goto	u930
+   172  002A                     u931:
+   173  002A  2825               	goto	l5
+   174  002B                     u930:
+   175                           	
+   176  002B                     l7:	
+   177                           	line	99
+   178                           ;vision.c: 98: }
+   179                           ;vision.c: 99: while((PORTB&48)==0)
+   180  002B  282C               	goto	l8
+   181                           	line	101
+   182                           ;vision.c: 100: {
+   183                           	
+   184  002C                     l8:	
+   185                           	line	99
+   186                           	
+   187  002C  0806               	movf	(6),w	;volatile
+   188                           	
+   189  002D  3930               	andlw	030h
+   190  002E  1903               	btfsc	status,2
+   191  002F  2831               	goto	u941
+   192  0030  2832               	goto	u940
+   193  0031                     u941:
+   194  0031  282C               	goto	l8
+   195  0032                     u940:
+   196                           	
+   197  0032                     l10:	
+   198                           	line	102
+   199                           ;vision.c: 101: }
+   200                           ;vision.c: 102: delay(2);
+   201  0032  3002               	movlw	low(02h)
+   202                           	
+   203  0033  0094               	movwf	(?_delay)
+   204  0034  3000               	movlw	high(02h)
+   205  0035  0095               	movwf	((?_delay))+1
+   206  0036  229A               	fcall	_delay
+   207                           	line	103
+   208                           ;vision.c: 103: switch((PORTB&48)){
+   209  0037  284A               	goto	l12
+   210                           	line	104
+   211                           ;vision.c: 104: case 0:
+   212                           	
+   213  0038                     l13:	
+   214                           	line	105
+   215                           ;vision.c: 105: PORTB = 0|4;
+   216  0038  3004               	movlw	(04h)
+   217                           	
+   218  0039  0086               	movwf	(6)	;volatile
+   219                           	line	106
+   220                           ;vision.c: 106: break;
+   221  003A  2863               	goto	l2
+   222                           	line	107
+   223                           ;vision.c: 107: case 16:
+   224                           	
+   225  003B                     l14:	
+   226                           	line	108
+   227                           ;vision.c: 108: leftturn();
+   228  003B  22EA               	fcall	_leftturn
+   229                           	line	109
+   230                           ;vision.c: 109: linefollow();
+   231  003C  2342               	fcall	_linefollow
+   232                           	line	110
+   233                           ;vision.c: 110: break;
+   234  003D  2863               	goto	l2
+   235                           	line	111
+   236                           ;vision.c: 111: case 32:
+   237                           	
+   238  003E                     l15:	
+   239                           	line	112
+   240                           ;vision.c: 112: rightturn();
+   241  003E  22B4               	fcall	_rightturn
+   242                           	line	113
+   243                           ;vision.c: 113: linefollow();
+   244  003F  2342               	fcall	_linefollow
+   245                           	line	114
+   246                           ;vision.c: 114: break;
+   247  0040  2863               	goto	l2
+   248                           	line	115
+   249                           ;vision.c: 115: case 48:
+   250                           	
+   251  0041                     l16:	
+   252                           	line	116
+   253                           ;vision.c: 116: straight();
+   254  0041  2284               	fcall	_straight
+   255                           	line	117
+   256                           ;vision.c: 117: linefollow();
+   257  0042  2342               	fcall	_linefollow
+   258                           	line	118
+   259                           ;vision.c: 118: break;
+   260  0043  2863               	goto	l2
+   261                           	line	119
+   262                           ;vision.c: 119: default:
+   263                           	
+   264  0044                     l17:	
+   265+                          	line	120
+   266+                          ;vision.c: 120: PORTB = 0;
+   267+ 0044  1003               	clrc
+   268+                          	
+   269+ 0045  3000               	movlw	0
+   270+ 0046  1803               	btfsc	status,0
+   271+ 0047  3001               	movlw	1
+   272+ 0048  0086               	movwf	(6)	;volatile
+   273+                          	line	121
+   274+                          ;vision.c: 121: break;
+   275+ 0049  2863               	goto	l2
+   276+                          	line	103
+   277+                          	
+   278+ 004A                     l12:	
+   279+ 004A  1283               	bcf	status, 5	;RP0=0, select bank0
+   280+                          	
+   281+ 004B  0806               	movf	(6),w	;volatile
+   282+                          	
+   283+ 004C  3930               	andlw	030h
+   284+ 004D  008E               	movwf	(??_main+2+0)
+   285+ 004E  018F               	clrf	(??_main+2+0+1)
+   286+ 004F  285E               		goto	l30029
+   287+ 0050                     l30030:
+   288+ 0050  080E               	movf 0+(??_main+2+0),w
+   289+ 0051  3A00               	xorlw	0^0
+   290  0052  1903               	skipnz
+   291+ 0053  2838               	goto	l13
+   292+ 0054  3A10               	xorlw	16^0
+   293+ 0055  1903               	skipnz
+   294+ 0056  283B               	goto	l14
+   295+ 0057  3A30               	xorlw	32^16
+   296+ 0058  1903               	skipnz
+   297+ 0059  283E               	goto	l15
+   298+ 005A  3A10               	xorlw	48^32
+   299+ 005B  1903               	skipnz
+   300+ 005C  2841               	goto	l16
+   301+ 005D  2844               	goto	l17
+   302+                          
+   303+ 005E                     l30029:
+   304+ 005E  080F               	movf 1+(??_main+2+0),w
+   305+ 005F  3A00               	xorlw	0^0
+   306+ 0060  1903               	skipnz
+   307+ 0061  2850               	goto	l30030
+   308+ 0062  2844               	goto	l17
+   309+                          
+   310+                          	line	123
+   311+                          	
+   312+ 0063                     l2:	
+   313+                          	line	94
+   314+ 0063  2821               	goto	l3
+   315+                          	global	start
+   316+ 0064  2800               	ljmp	start
+   317+                          	psect	maintext
+   318+                          	opt stack 0
+   319+                          ; =============== function _main ends =========
+      +                          ======
+   320+                          
+   321+                          GLOBAL __end_of_main
+   322+ 0065                     	__end_of_main:
+   323+                          	FNSIZE	_main,4,0
+   324+                          	line	126
+   325+                          	signat	_main,88
+   326+                          	global	_rightturn
+   327+                          	global	??_rightturn
+   328+                          	global	?_rightturn
+   329+                          
+   330+                          ; *************** function _rightturn *********
+      +                          ******
+   331+                          ; Defined at:
+   332+                          ;		line 180 in file "C:\Documents and Settings\
+      +                          Neo\My Documents\mplab\vision\vision.c"
+   333+                          ; Parameters:
+   334+                          ;		None
+   335+                          ; Auto variables:
+   336+                          ;		None
+   337+                          ; Return value:
+   338+                          ;		type: void 
+   339+                          ;		size: 0
+   340+                          ; Registers used:
+   341+                          ;		wreg, status,2, status,0, pclath, cstack
+   342+                          ; Tracked objects:
+   343+                          ;		On entry : 100/0
+   344+                          ;		On exit  : 0/0
+   345+                          ;		Unchanged: 0/0
+   346+                          ; Data sizes:
+   347+                          ;		Autos:    0
+   348+                          ;		Params:   0
+   349+                          ;		Temp:     2
+   350+                          ;		Total:    2
+   351+                          ; This function calls:
+   352+                          ;		_delay
+   353+                          ; This function is called by:
+   354+                          ;		_main
+   355+                          ; This function uses a non-reentrant model
+   356+                          ; 
+   357+                          	psect	text51,local,class=CODE,delta=2
+   358+                          	file	"C:\Documents and Settings\Neo\My Documen
+      +                          ts\mplab\vision\vision.c"
+   359+                          	line	180
+   360+                          ;vision.c: 180: void rightturn(){
+   361+                          	
+   362+ 02B4                     _rightturn:	
+   363+                          	opt stack 7
+   364+                          ; Regs used in _rightturn: [wreg+status,2+statu
+      +                          s,0+pclath+cstack]
+   365+                          	line	181
+   366+                          ;vision.c: 181: PORTB = 2;
+   367+ 02B4  3002               	movlw	(02h)
+   368+                          	
+   369+ 02B5  0086               	movwf	(6)	;volatile
+   370+                          	line	182
+   371+                          ;vision.c: 182: while(((~PORTA)&2)!=0){
+   372+ 02B6  2AC4               	goto	l39
+   373+                          	
+   374+ 02B7                     l40:	
+   375+                          	line	183
+   376+                          ;vision.c: 183: PORTB = 2;
+   377+ 02B7  3002               	movlw	(02h)
+   378+                          	
+   379+ 02B8  0086               	movwf	(6)	;volatile
+   380+                          	line	184
+   381+                          ;vision.c: 184: delay(2);
+   382+ 02B9  3002               	movlw	low(02h)
+   383+                          	
+   384+ 02BA  0094               	movwf	(?_delay)
+   385+ 02BB  3000               	movlw	high(02h)
+   386+ 02BC  0095               	movwf	((?_delay))+1
+   387+ 02BD  229A               	fcall	_delay
+   388+                          	line	185
+   389+                          ;vision.c: 185: PORTB = 0;
+   390+ 02BE  1003               	clrc
+   391+ 02BF  1283               	bcf	status, 5	;RP0=0, select bank0
+   392+                          	
+   393+ 02C0  3000               	movlw	0
+   394+ 02C1  1803               	btfsc	status,0
+   395+ 02C2  3001               	movlw	1
+   396+ 02C3  0086               	movwf	(6)	;volatile
+   397+                          	line	186
+   398+                          	
+   399+ 02C4                     l39:	
+   400+                          	line	182
+   401+                          	
+   402+ 02C4  0805               	movf	(5),w	;volatile
+   403                           	
+   404  02C5  0090               	movwf	(??_rightturn+0+0)
+   405+ 02C6  0191               	clrf	(??_rightturn+0+0+1)
+   406+ 02C7  0990               	comf	(??_rightturn+0+0),f
+   407+ 02C8  0991               	comf	(??_rightturn+0+1),f
+   408+ 02C9  1890               	btfsc	0+(??_rightturn+0+0),(1)&7
+   409+ 02CA  2ACC               	goto	u961
+   410+ 02CB  2ACD               	goto	u960
+   411  02CC                     u961:
+   412+ 02CC  2AB7               	goto	l40
+   413+ 02CD                     u960:
+   414+                          	
+   415+ 02CD                     l41:	
+   416+                          	line	187
+   417+                          ;vision.c: 186: }
+   418+                          ;vision.c: 187: while(((~PORTA)&2)==0){
+   419+ 02CD  2ADB               	goto	l42
+   420+                          	
+   421+ 02CE                     l43:	
+   422+                          	line	188
+   423+                          ;vision.c: 188: PORTB = 2;
+   424+ 02CE  3002               	movlw	(02h)
+   425                           	
+   426  02CF  0086               	movwf	(6)	;volatile
+   427+                          	line	189
+   428+                          ;vision.c: 189: delay(2);
+   429+ 02D0  3002               	movlw	low(02h)
+   430+                          	
+   431+ 02D1  0094               	movwf	(?_delay)
+   432+ 02D2  3000               	movlw	high(02h)
+   433+ 02D3  0095               	movwf	((?_delay))+1
+   434+ 02D4  229A               	fcall	_delay
+   435+                          	line	190
+   436+                          ;vision.c: 190: PORTB = 0;
+   437+ 02D5  1003               	clrc
+   438  02D6  1283               	bcf	status, 5	;RP0=0, select bank0
+   439+                          	
+   440+ 02D7  3000               	movlw	0
+   441+ 02D8  1803               	btfsc	status,0
+   442+ 02D9  3001               	movlw	1
+   443+ 02DA  0086               	movwf	(6)	;volatile
+   444+                          	line	191
+   445+                          	
+   446+ 02DB                     l42:	
+   447+                          	line	187
+   448+                          	
+   449+ 02DB  0805               	movf	(5),w	;volatile
+   450+                          	
+   451+ 02DC  0090               	movwf	(??_rightturn+0+0)
+   452+ 02DD  0191               	clrf	(??_rightturn+0+0+1)
+   453+ 02DE  0990               	comf	(??_rightturn+0+0),f
+   454+ 02DF  0991               	comf	(??_rightturn+0+1),f
+   455+ 02E0  1C90               	btfss	0+(??_rightturn+0+0),(1)&7
+   456+ 02E1  2AE3               	goto	u971
+   457+ 02E2  2AE4               	goto	u970
+   458+ 02E3                     u971:
+   459+ 02E3  2ACE               	goto	l43
+   460+ 02E4                     u970:
+   461+                          	
+   462+ 02E4                     l44:	
+   463+                          	line	192
+   464+                          ;vision.c: 191: }
+   465+                          ;vision.c: 192: PORTB = 0;
+   466+ 02E4  1003               	clrc
+   467+                          	
+   468+ 02E5  3000               	movlw	0
+   469+ 02E6  1803               	btfsc	status,0
+   470+ 02E7  3001               	movlw	1
+   471+ 02E8  0086               	movwf	(6)	;volatile
+   472+                          	line	193
+   473+                          ;vision.c: 193: }
+   474+ 02E9                     l38:	
+   475+ 02E9  0008               	return
+   476+                          	psect	text52,local,class=CODE,delta=2
+   477+                          	opt stack 0
+   478+                          ; =============== function _rightturn ends ====
+      +                          ===========
+   479+                          
+   480+                          GLOBAL __end_of_rightturn
+   481+ 0284                     	__end_of_rightturn:
+   482+                          	FNSIZE	_rightturn,2,0
+   483+                          	signat	_rightturn,88
+   484+                          	global	_straight
+   485+                          	global	??_straight
+   486+                          	global	?_straight
+   487+                          
+   488+                          ; *************** function _straight **********
+      +                          *****
+   489+                          ; Defined at:
+   490+                          ;		line 217 in file "C:\Documents and Settings\
+      +                          Neo\My Documents\mplab\vision\vision.c"
+   491+                          ; Parameters:
+   492+                          ;		None
+   493+                          ; Auto variables:
+   494+                          ;		None
+   495+                          ; Return value:
+   496+                          ;		type: void 
+   497+                          ;		size: 0
+   498+                          ; Registers used:
+   499+                          ;		wreg
+   500+                          ; Tracked objects:
+   501+                          ;		On entry : 100/0
+   502+                          ;		On exit  : 0/0
+   503+                          ;		Unchanged: 0/0
+   504+                          ; Data sizes:
+   505+                          ;		Autos:    0
+   506+                          ;		Params:   0
+   507+                          ;		Temp:     4
+   508+                          ;		Total:    4
+   509+                          ; This function calls:
+   510+                          ;		Nothing
+   511+                          ; This function is called by:
+   512+                          ;		_main
+   513+                          ; This function uses a non-reentrant model
+   514+                          ; 
+   515+                          	file	"C:\Documents and Settings\Neo\My Documen
+      +                          ts\mplab\vision\vision.c"
+   516+                          	line	217
+   517+                          ;vision.c: 217: void straight(){
+   518+                          	
+   519+ 0284                     _straight:	
+   520+                          	opt stack 7
+   521+                          ; Regs used in _straight: [wreg]
+   522+                          	line	218
+   523+                          ;vision.c: 218: PORTB = 3;
+   524+ 0284  3003               	movlw	(03h)
+   525+                          	
+   526+ 0285  0086               	movwf	(6)	;volatile
+   527+                          	line	219
+   528+                          ;vision.c: 219: while(((~PORTA)&12)==12){
+   529+ 0286  2A87               	goto	l57
+   530+                          	line	220
+   531+                          	
+   532+ 0287                     l57:	
+   533+                          	line	219
+   534+                          	
+   535+ 0287  0805               	movf	(5),w	;volatile
+   536+                          	
+   537+ 0288  0090               	movwf	(??_straight+0+0)
+   538+ 0289  0191               	clrf	(??_straight+0+0+1)
+   539+ 028A  0990               	comf	(??_straight+0+0),f
+   540+ 028B  0991               	comf	(??_straight+0+1),f
+   541+ 028C  300C               	movlw	low(0Ch)
+   542+ 028D  0510               	andwf	0+(??_straight+0+0),w
+   543+ 028E  0092               	movwf	(??_straight+2+0)
+   544+ 028F  3000               	movlw	high(0Ch)
+   545+ 0290  0511               	andwf	1+(??_straight+0+0),w
+   546+ 0291  0093               	movwf	1+(??_straight+2+0)
+   547+ 0292  300C               	movlw	0Ch
+   548+ 0293  0612               	xorwf	0+(??_straight+2+0),w
+   549+ 0294  0413               	iorwf	1+(??_straight+2+0),w
+   550+ 0295  1903               	skipnz
+   551+ 0296  2A98               	goto	u1021
+   552+ 0297  2A99               	goto	u1020
+   553+ 0298                     u1021:
+   554+ 0298  2A87               	goto	l57
+   555+ 0299                     u1020:
+   556+                          	
+   557+ 0299                     l59:	
+   558+                          	line	221
+   559+                          ;vision.c: 220: }
+   560+                          ;vision.c: 221: }
+   561+ 0299                     l56:	
+   562+ 0299  0008               	return
+   563+                          	psect	text53,local,class=CODE,delta=2
+   564+                          	opt stack 0
+   565+                          ; =============== function _straight ends =====
+      +                          ==========
+   566+                          
+   567+                          GLOBAL __end_of_straight
+   568+ 0342                     	__end_of_straight:
+   569+                          	FNSIZE	_straight,4,0
+   570+                          	signat	_straight,88
+   571+                          	global	_linefollow
+   572+                          	global	??_linefollow
+   573+                          	global	?_linefollow
+   574+                          
+   575+                          ; *************** function _linefollow ********
+      +                          *******
+   576+                          ; Defined at:
+   577+                          ;		line 131 in file "C:\Documents and Settings\
+      +                          Neo\My Documents\mplab\vision\vision.c"
+   578+                          ; Parameters:
+   579+                          ;		None
+   580+                          ; Auto variables:
+   581+                          ;		None
+   582+                          ; Return value:
+   583+                          ;		type: void 
+   584+                          ;		size: 0
+   585+                          ; Registers used:
+   586+                          ;		wreg, fsr0l, fsr0h, status,2, status,0, pcla
+      +                          th, cstack
+   587+                          ; Tracked objects:
+   588+                          ;		On entry : 0/0
+   589+                          ;		On exit  : 0/0
+   590+                          ;		Unchanged: 0/0
+   591+                          ; Data sizes:
+   592+                          ;		Autos:    0
+   593+                          ;		Params:   0
+   594+                          ;		Temp:     4
+   595+                          ;		Total:    4
+   596+                          ; This function calls:
+   597+                          ;		_delay
+   598+                          ; This function is called by:
+   599+                          ;		_main
+   600+                          ; This function uses a non-reentrant model
+   601+                          ; 
+   602+                          	file	"C:\Documents and Settings\Neo\My Documen
+      +                          ts\mplab\vision\vision.c"
+   603+                          	line	131
+   604+                          ;vision.c: 131: void linefollow(){
+   605+                          	
+   606+ 0342                     _linefollow:	
+   607+                          	opt stack 7
+   608+                          ; Regs used in _linefollow: [wreg-fsr0h+status,
+      +                          2+status,0+pclath+cstack]
+   609+                          	line	132
+   610+                          ;vision.c: 132: while((((~PORTA)&14)!=14) && ((
+      +                          (~PORTA)&14)!=12)){
+   611+ 0342  2BDA               	goto	l24
+   612+                          	
+   613+ 0343                     l25:	
+   614+                          	line	133
+   615+                          ;vision.c: 133: switch(((~PORTA)&14)){
+   616+ 0343  2BAF               	goto	l28
+   617+                          	line	134
+   618+                          ;vision.c: 134: case 0:
+   619+                          	
+   620+ 0344                     l29:	
+   621+                          	line	135
+   622+                          ;vision.c: 135: PORTB = 3;
+   623+ 0344  3003               	movlw	(03h)
+   624+                          	
+   625+ 0345  0086               	movwf	(6)	;volatile
+   626                           	line	136
+   627                           ;vision.c: 136: delay(2);
+   628  0346  3002               	movlw	low(02h)
+   629+                          	
+   630+ 0347  0094               	movwf	(?_delay)
+   631+ 0348  3000               	movlw	high(02h)
+   632+ 0349  0095               	movwf	((?_delay))+1
+   633+ 034A  229A               	fcall	_delay
+   634+                          	line	137
+   635+                          ;vision.c: 137: PORTB = 0;
+   636+ 034B  1003               	clrc
+   637+ 034C  1283               	bcf	status, 5	;RP0=0, select bank0
+   638                           	
+   639  034D  3000               	movlw	0
+   640+ 034E  1803               	btfsc	status,0
+   641+ 034F  3001               	movlw	1
+   642+ 0350  0086               	movwf	(6)	;volatile
+   643+                          	line	138
+   644+                          ;vision.c: 138: break;
+   645+ 0351  2BDA               	goto	l24
+   646+                          	line	139
+   647+                          ;vision.c: 139: case 2:
+   648+                          	
+   649+ 0352                     l30:	
+   650+                          	line	140
+   651+                          ;vision.c: 140: PORTB = 3;
+   652+ 0352  3003               	movlw	(03h)
+   653+                          	
+   654+ 0353  0086               	movwf	(6)	;volatile
+   655+                          	line	141
+   656+                          ;vision.c: 141: delay(2);
+   657+ 0354  3002               	movlw	low(02h)
+   658+                          	
+   659+ 0355  0094               	movwf	(?_delay)
+   660+ 0356  3000               	movlw	high(02h)
+   661+ 0357  0095               	movwf	((?_delay))+1
+   662+ 0358  229A               	fcall	_delay
+   663+                          	line	142
+   664+                          ;vision.c: 142: PORTB = 0;
+   665+ 0359  1003               	clrc
+   666  035A  1283               	bcf	status, 5	;RP0=0, select bank0
+   667+                          	
+   668+ 035B  3000               	movlw	0
+   669+ 035C  1803               	btfsc	status,0
+   670+ 035D  3001               	movlw	1
+   671  035E  0086               	movwf	(6)	;volatile
+   672+                          	line	143
+   673+                          ;vision.c: 143: break;
+   674+ 035F  2BDA               	goto	l24
+   675+                          	line	144
+   676+                          ;vision.c: 144: case 4:
+   677+                          	
+   678+ 0360                     l31:	
+   679                           	line	145
+   680                           ;vision.c: 145: PORTB = 2;
+   681  0360  3002               	movlw	(02h)
+   682+                          	
+   683+ 0361  0086               	movwf	(6)	;volatile
+   684+                          	line	146
+   685+                          ;vision.c: 146: delay(2);
+   686+ 0362  3002               	movlw	low(02h)
+   687+                          	
+   688+ 0363  0094               	movwf	(?_delay)
+   689+ 0364  3000               	movlw	high(02h)
+   690+ 0365  0095               	movwf	((?_delay))+1
+   691+ 0366  229A               	fcall	_delay
+   692+                          	line	147
+   693+                          ;vision.c: 147: PORTB = 0;
+   694+ 0367  1003               	clrc
+   695+ 0368  1283               	bcf	status, 5	;RP0=0, select bank0
+   696+                          	
+   697+ 0369  3000               	movlw	0
+   698+ 036A  1803               	btfsc	status,0
+   699+ 036B  3001               	movlw	1
+   700+ 036C  0086               	movwf	(6)	;volatile
+   701+                          	line	148
+   702+                          ;vision.c: 148: break;
+   703+ 036D  2BDA               	goto	l24
+   704+                          	line	149
+   705+                          ;vision.c: 149: case 6:
+   706+                          	
+   707+ 036E                     l32:	
+   708+                          	line	150
+   709+                          ;vision.c: 150: PORTB = 2;
+   710+ 036E  3002               	movlw	(02h)
+   711+                          	
+   712+ 036F  0086               	movwf	(6)	;volatile
+   713+                          	line	151
+   714+                          ;vision.c: 151: delay(2);
+   715+ 0370  3002               	movlw	low(02h)
+   716+                          	
+   717+ 0371  0094               	movwf	(?_delay)
+   718+ 0372  3000               	movlw	high(02h)
+   719+ 0373  0095               	movwf	((?_delay))+1
+   720+ 0374  229A               	fcall	_delay
+   721+                          	line	152
+   722+                          ;vision.c: 152: PORTB = 0;
+   723+ 0375  1003               	clrc
+   724+ 0376  1283               	bcf	status, 5	;RP0=0, select bank0
+   725+                          	
+   726+ 0377  3000               	movlw	0
+   727+ 0378  1803               	btfsc	status,0
+   728+ 0379  3001               	movlw	1
+   729+ 037A  0086               	movwf	(6)	;volatile
+   730                           	line	153
+   731                           ;vision.c: 153: break;
+   732  037B  2BDA               	goto	l24
+   733+                          	line	154
+   734+                          ;vision.c: 154: case 8:
+   735+                          	
+   736+ 037C                     l33:	
+   737+                          	line	155
+   738+                          ;vision.c: 155: PORTB = 1;
+   739+ 037C  3001               	movlw	(01h)
+   740                           	
+   741  037D  0086               	movwf	(6)	;volatile
+   742                           	line	156
+   743                           ;vision.c: 156: delay(2);
+   744  037E  3002               	movlw	low(02h)
+   745                           	
+   746  037F  0094               	movwf	(?_delay)
+   747  0380  3000               	movlw	high(02h)
+   748  0381  0095               	movwf	((?_delay))+1
+   749  0382  229A               	fcall	_delay
+   750                           	line	157
+   751                           ;vision.c: 157: PORTB = 0;
+   752  0383  1003               	clrc
+   753  0384  1283               	bcf	status, 5	;RP0=0, select bank0
+   754                           	
+   755  0385  3000               	movlw	0
+   756  0386  1803               	btfsc	status,0
+   757  0387  3001               	movlw	1
+   758  0388  0086               	movwf	(6)	;volatile
+   759                           	line	158
+   760                           ;vision.c: 158: break;
+   761  0389  2BDA               	goto	l24
+   762                           	line	159
+   763                           ;vision.c: 159: case 10:
+   764                           	
+   765  038A                     l34:	
+   766                           	line	160
+   767                           ;vision.c: 160: PORTB = 1;
+   768  038A  3001               	movlw	(01h)
+   769                           	
+   770  038B  0086               	movwf	(6)	;volatile
+   771                           	line	161
+   772                           ;vision.c: 161: delay(2);
+   773  038C  3002               	movlw	low(02h)
+   774                           	
+   775  038D  0094               	movwf	(?_delay)
+   776  038E  3000               	movlw	high(02h)
+   777  038F  0095               	movwf	((?_delay))+1
+   778  0390  229A               	fcall	_delay
+   779                           	line	162
+   780                           ;vision.c: 162: PORTB = 0;
+   781  0391  1003               	clrc
+   782  0392  1283               	bcf	status, 5	;RP0=0, select bank0
+   783                           	
+   784  0393  3000               	movlw	0
+   785  0394  1803               	btfsc	status,0
+   786  0395  3001               	movlw	1
+   787  0396  0086               	movwf	(6)	;volatile
+   788                           	line	163
+   789                           ;vision.c: 163: break;
+   790  0397  2BDA               	goto	l24
+   791                           	line	164
+   792                           ;vision.c: 164: case 12:
+   793                           	
+   794  0398                     l35:	
+   795                           	line	167
+   796                           ;vision.c: 167: got= 1;
+   797  0398  3001               	movlw	low(01h)
+   798                           	
+   799  0399  00CC               	movwf	(76)
+   800  039A  3000               	movlw	high(01h)
+   801  039B  00CD               	movwf	((76))+1
+   802                           	line	168
+   803                           ;vision.c: 168: PORTB = 0;
+   804  039C  1003               	clrc
+   805                           	
+   806  039D  3000               	movlw	0
+   807  039E  1803               	btfsc	status,0
+   808  039F  3001               	movlw	1
+   809  03A0  0086               	movwf	(6)	;volatile
+   810                           	line	169
+   811                           ;vision.c: 169: break;
+   812  03A1  2BDA               	goto	l24
+   813                           	line	170
+   814                           ;vision.c: 170: case 14:
+   815                           	
+   816  03A2                     l36:	
+   817                           	line	171
+   818                           ;vision.c: 171: PORTB = 0;
+   819  03A2  1003               	clrc
+   820                           	
+   821  03A3  3000               	movlw	0
+   822  03A4  1803               	btfsc	status,0
+   823  03A5  3001               	movlw	1
+   824  03A6  0086               	movwf	(6)	;volatile
+   825                           	line	172
+   826                           ;vision.c: 172: got = 0;
+   827  03A7  3000               	movlw	low(0)
+   828                           	
+   829  03A8  00CC               	movwf	(76)
+   830  03A9  3000               	movlw	high(0)
+   831  03AA  00CD               	movwf	((76))+1
+   832                           	line	174
+   833                           ;vision.c: 174: break;
+   834  03AB  2BDA               	goto	l24
+   835                           	line	175
+   836                           ;vision.c: 175: default :
+   837                           	
+   838  03AC                     l37:	
+   839                           	line	176
+   840                           ;vision.c: 176: PORTB = 8;
+   841  03AC  3008               	movlw	(08h)
+   842                           	
+   843  03AD  0086               	movwf	(6)	;volatile
+   844                           	line	177
+   845                           ;vision.c: 177: }
+   846  03AE  2BDA               	goto	l24
+   847                           	line	133
+   848                           	
+   849  03AF                     l28:	
+   850                           	
+   851  03AF  0805               	movf	(5),w	;volatile
+   852                           	
+   853  03B0  0090               	movwf	(??_linefollow+0+0)
+   854  03B1  0191               	clrf	(??_linefollow+0+0+1)
+   855  03B2  0990               	comf	(??_linefollow+0+0),f
+   856  03B3  0991               	comf	(??_linefollow+0+1),f
+   857  03B4  300E               	movlw	low(0Eh)
+   858  03B5  0510               	andwf	0+(??_linefollow+0+0),w
+   859  03B6  0092               	movwf	(??_linefollow+2+0)
+   860  03B7  3000               	movlw	high(0Eh)
+   861  03B8  0511               	andwf	1+(??_linefollow+0+0),w
+   862  03B9  0093               	movwf	1+(??_linefollow+2+0)
+   863  03BA  2BD5               		goto	l30031
+   864  03BB                     l30032:
+   865  03BB  0812               	movf 0+(??_linefollow+2+0),w
+   866  03BC  3A00               	xorlw	0^0
+   867  03BD  1903               	skipnz
+   868  03BE  2B44               	goto	l29
+   869  03BF  3A02               	xorlw	2^0
+   870  03C0  1903               	skipnz
+   871  03C1  2B52               	goto	l30
+   872  03C2  3A06               	xorlw	4^2
+   873  03C3  1903               	skipnz
+   874  03C4  2B60               	goto	l31
+   875  03C5  3A02               	xorlw	6^4
+   876  03C6  1903               	skipnz
+   877  03C7  2B6E               	goto	l32
+   878  03C8  3A0E               	xorlw	8^6
+   879  03C9  1903               	skipnz
+   880  03CA  2B7C               	goto	l33
+   881  03CB  3A02               	xorlw	10^8
+   882  03CC  1903               	skipnz
+   883  03CD  2B8A               	goto	l34
+   884  03CE  3A06               	xorlw	12^10
+   885  03CF  1903               	skipnz
+   886  03D0  2B98               	goto	l35
+   887  03D1  3A02               	xorlw	14^12
+   888  03D2  1903               	skipnz
+   889  03D3  2BA2               	goto	l36
+   890  03D4  2BAC               	goto	l37
+   891                           
+   892  03D5                     l30031:
+   893  03D5  0813               	movf 1+(??_linefollow+2+0),w
+   894  03D6  3A00               	xorlw	0^0
+   895  03D7  1903               	skipnz
+   896  03D8  2BBB               	goto	l30032
+   897  03D9  2BAC               	goto	l37
+   898                           
+   899                           	line	178
+   900                           	
+   901  03DA                     l24:	
+   902                           	line	132
+   903  03DA  1283               	bcf	status, 5	;RP0=0, select bank0
+   904                           	
+   905  03DB  0805               	movf	(5),w	;volatile
+   906                           	
+   907  03DC  0090               	movwf	(??_linefollow+0+0)
+   908  03DD  0191               	clrf	(??_linefollow+0+0+1)
+   909  03DE  0990               	comf	(??_linefollow+0+0),f
+   910  03DF  0991               	comf	(??_linefollow+0+1),f
+   911  03E0  300E               	movlw	low(0Eh)
+   912  03E1  0510               	andwf	0+(??_linefollow+0+0),w
+   913  03E2  0092               	movwf	(??_linefollow+2+0)
+   914  03E3  3000               	movlw	high(0Eh)
+   915  03E4  0511               	andwf	1+(??_linefollow+0+0),w
+   916  03E5  0093               	movwf	1+(??_linefollow+2+0)
+   917  03E6  300E               	movlw	0Eh
+   918  03E7  0612               	xorwf	0+(??_linefollow+2+0),w
+   919  03E8  0413               	iorwf	1+(??_linefollow+2+0),w
+   920  03E9  1903               	skipnz
+   921  03EA  2BEC               	goto	u911
+   922  03EB  2BED               	goto	u910
+   923  03EC                     u911:
+   924  03EC  2BFF               	goto	l26
+   925  03ED                     u910:
+   926                           	
+   927  03ED  0805               	movf	(5),w	;volatile
+   928                           	
+   929  03EE  0090               	movwf	(??_linefollow+0+0)
+   930  03EF  0191               	clrf	(??_linefollow+0+0+1)
+   931  03F0  0990               	comf	(??_linefollow+0+0),f
+   932  03F1  0991               	comf	(??_linefollow+0+1),f
+   933  03F2  300E               	movlw	low(0Eh)
+   934  03F3  0510               	andwf	0+(??_linefollow+0+0),w
+   935  03F4  0092               	movwf	(??_linefollow+2+0)
+   936  03F5  3000               	movlw	high(0Eh)
+   937  03F6  0511               	andwf	1+(??_linefollow+0+0),w
+   938  03F7  0093               	movwf	1+(??_linefollow+2+0)
+   939  03F8  300C               	movlw	0Ch
+   940  03F9  0612               	xorwf	0+(??_linefollow+2+0),w
+   941  03FA  0413               	iorwf	1+(??_linefollow+2+0),w
+   942  03FB  1D03               	skipz
+   943  03FC  2BFE               	goto	u921
+   944  03FD  2BFF               	goto	u920
+   945  03FE                     u921:
+   946  03FE  2B43               	goto	l25
+   947  03FF                     u920:
+   948                           	
+   949  03FF                     l600000148:	
+   950                           	
+   951  03FF                     l26:	
+   952                           	line	179
+   953                           ;vision.c: 178: }
+   954                           ;vision.c: 179: }
+   955  03FF                     l23:	
+   956  03FF  0008               	return
+   957                           	psect	text54,local,class=CODE,delta=2
+   958                           	opt stack 0
+   959                           ; =============== function _linefollow ends ===
+                                 ============
+   960                           
+   961                           GLOBAL __end_of_linefollow
+   962  02EA                     	__end_of_linefollow:
+   963                           	FNSIZE	_linefollow,4,0
+   964                           	signat	_linefollow,88
+   965                           	global	_leftturn
+   966                           	global	??_leftturn
+   967                           	global	?_leftturn
+   968                           
+   969                           ; *************** function _leftturn **********
+                                 *****
+   970                           ; Defined at:
+   971                           ;		line 194 in file "C:\Documents and Settings\
+                                 Neo\My Documents\mplab\vision\vision.c"
+   972                           ; Parameters:
+   973                           ;		None
+   974                           ; Auto variables:
+   975                           ;		None
+   976                           ; Return value:
+   977                           ;		type: void 
+   978                           ;		size: 0
+   979                           ; Registers used:
+   980                           ;		wreg, status,2, status,0, pclath, cstack
+   981                           ; Tracked objects:
+   982                           ;		On entry : 100/0
+   983                           ;		On exit  : 0/0
+   984                           ;		Unchanged: 0/0
+   985                           ; Data sizes:
+   986                           ;		Autos:    0
+   987                           ;		Params:   0
+   988                           ;		Temp:     2
+   989                           ;		Total:    2
+   990                           ; This function calls:
+   991                           ;		_delay
+   992                           ; This function is called by:
+   993                           ;		_main
+   994                           ; This function uses a non-reentrant model
+   995                           ; 
+   996                           	file	"C:\Documents and Settings\Neo\My Documen
+                                 ts\mplab\vision\vision.c"
+   997                           	line	194
+   998                           ;vision.c: 194: void leftturn(){
+   999                           	
+  1000  02EA                     _leftturn:	
+  1001                           	opt stack 7
+  1002                           ; Regs used in _leftturn: [wreg+status,2+status
+                                 ,0+pclath+cstack]
+  1003                           	line	195
+  1004                           ;vision.c: 195: PORTB = 1;
+  1005  02EA  3001               	movlw	(01h)
+  1006                           	
+  1007  02EB  0086               	movwf	(6)	;volatile
+  1008                           	line	196
+  1009                           ;vision.c: 196: if (got ==1){
+  1010  02EC  3001               	movlw	01h
+  1011                           	
+  1012  02ED  064C               	xorwf	(76),w
+  1013  02EE  044D               	iorwf	(76+1),w
+  1014  02EF  1D03               	skipz
+  1015  02F0  2AF2               	goto	u981
+  1016  02F1  2AF3               	goto	u980
+  1017  02F2                     u981:
+  1018  02F2  2B0E               	goto	l46
+  1019  02F3                     u980:
+  1020                           	line	197
+  1021                           ;vision.c: 197: while(((~PORTA)&2)==0){
+  1022  02F3  2B01               	goto	l47
+  1023                           	
+  1024  02F4                     l48:	
+  1025                           	line	198
+  1026                           ;vision.c: 198: PORTB = 1;
+  1027  02F4  3001               	movlw	(01h)
+  1028                           	
+  1029  02F5  0086               	movwf	(6)	;volatile
+  1030                           	line	199
+  1031                           ;vision.c: 199: delay(2);
+  1032  02F6  3002               	movlw	low(02h)
+  1033                           	
+  1034  02F7  0094               	movwf	(?_delay)
+  1035  02F8  3000               	movlw	high(02h)
+  1036  02F9  0095               	movwf	((?_delay))+1
+  1037  02FA  229A               	fcall	_delay
+  1038                           	line	200
+  1039                           ;vision.c: 200: PORTB = 0;
+  1040  02FB  1003               	clrc
+  1041  02FC  1283               	bcf	status, 5	;RP0=0, select bank0
+  1042                           	
+  1043  02FD  3000               	movlw	0
+  1044  02FE  1803               	btfsc	status,0
+  1045  02FF  3001               	movlw	1
+  1046  0300  0086               	movwf	(6)	;volatile
+  1047                           	line	201
+  1048                           	
+  1049  0301                     l47:	
+  1050                           	line	197
+  1051                           	
+  1052  0301  0805               	movf	(5),w	;volatile
+  1053                           	
+  1054  0302  0090               	movwf	(??_leftturn+0+0)
+  1055  0303  0191               	clrf	(??_leftturn+0+0+1)
+  1056  0304  0990               	comf	(??_leftturn+0+0),f
+  1057  0305  0991               	comf	(??_leftturn+0+1),f
+  1058  0306  1C90               	btfss	0+(??_leftturn+0+0),(1)&7
+  1059  0307  2B09               	goto	u991
+  1060  0308  2B0A               	goto	u990
+  1061  0309                     u991:
+  1062  0309  2AF4               	goto	l48
+  1063  030A                     u990:
+  1064                           	
+  1065  030A                     l49:	
+  1066                           	line	202
+  1067                           ;vision.c: 201: }
+  1068                           ;vision.c: 202: got=0;
+  1069  030A  3000               	movlw	low(0)
+  1070                           	
+  1071  030B  00CC               	movwf	(76)
+  1072  030C  3000               	movlw	high(0)
+  1073  030D  00CD               	movwf	((76))+1
+  1074                           	line	203
+  1075                           	
+  1076  030E                     l46:	
+  1077                           	line	205
+  1078                           ;vision.c: 203: }
+  1079                           ;vision.c: 205: while(((~PORTA)&2)!=0){
+  1080  030E  2B1C               	goto	l50
+  1081                           	
+  1082  030F                     l51:	
+  1083                           	line	206
+  1084                           ;vision.c: 206: PORTB = 1;
+  1085  030F  3001               	movlw	(01h)
+  1086                           	
+  1087  0310  0086               	movwf	(6)	;volatile
+  1088                           	line	207
+  1089                           ;vision.c: 207: delay(2);
+  1090  0311  3002               	movlw	low(02h)
+  1091                           	
+  1092  0312  0094               	movwf	(?_delay)
+  1093  0313  3000               	movlw	high(02h)
+  1094  0314  0095               	movwf	((?_delay))+1
+  1095  0315  229A               	fcall	_delay
+  1096                           	line	208
+  1097                           ;vision.c: 208: PORTB = 0;
+  1098  0316  1003               	clrc
+  1099  0317  1283               	bcf	status, 5	;RP0=0, select bank0
+  1100                           	
+  1101  0318  3000               	movlw	0
+  1102  0319  1803               	btfsc	status,0
+  1103  031A  3001               	movlw	1
+  1104  031B  0086               	movwf	(6)	;volatile
+  1105                           	line	209
+  1106                           	
+  1107  031C                     l50:	
+  1108                           	line	205
+  1109                           	
+  1110  031C  0805               	movf	(5),w	;volatile
+  1111                           	
+  1112  031D  0090               	movwf	(??_leftturn+0+0)
+  1113  031E  0191               	clrf	(??_leftturn+0+0+1)
+  1114  031F  0990               	comf	(??_leftturn+0+0),f
+  1115  0320  0991               	comf	(??_leftturn+0+1),f
+  1116  0321  1890               	btfsc	0+(??_leftturn+0+0),(1)&7
+  1117  0322  2B24               	goto	u1001
+  1118  0323  2B25               	goto	u1000
+  1119  0324                     u1001:
+  1120  0324  2B0F               	goto	l51
+  1121  0325                     u1000:
+  1122                           	
+  1123  0325                     l52:	
+  1124                           	line	210
+  1125                           ;vision.c: 209: }
+  1126                           ;vision.c: 210: while(((~PORTA)&2)==0){
+  1127  0325  2B33               	goto	l53
+  1128                           	
+  1129  0326                     l54:	
+  1130                           	line	211
+  1131                           ;vision.c: 211: PORTB = 1;
+  1132  0326  3001               	movlw	(01h)
+  1133                           	
+  1134  0327  0086               	movwf	(6)	;volatile
+  1135                           	line	212
+  1136                           ;vision.c: 212: delay(2);
+  1137  0328  3002               	movlw	low(02h)
+  1138                           	
+  1139  0329  0094               	movwf	(?_delay)
+  1140  032A  3000               	movlw	high(02h)
+  1141  032B  0095               	movwf	((?_delay))+1
+  1142  032C  229A               	fcall	_delay
+  1143                           	line	213
+  1144                           ;vision.c: 213: PORTB = 0;
+  1145  032D  1003               	clrc
+  1146  032E  1283               	bcf	status, 5	;RP0=0, select bank0
+  1147                           	
+  1148  032F  3000               	movlw	0
+  1149  0330  1803               	btfsc	status,0
+  1150  0331  3001               	movlw	1
+  1151  0332  0086               	movwf	(6)	;volatile
+  1152                           	line	214
+  1153                           	
+  1154  0333                     l53:	
+  1155                           	line	210
+  1156                           	
+  1157  0333  0805               	movf	(5),w	;volatile
+  1158                           	
+  1159  0334  0090               	movwf	(??_leftturn+0+0)
+  1160  0335  0191               	clrf	(??_leftturn+0+0+1)
+  1161  0336  0990               	comf	(??_leftturn+0+0),f
+  1162  0337  0991               	comf	(??_leftturn+0+1),f
+  1163  0338  1C90               	btfss	0+(??_leftturn+0+0),(1)&7
+  1164  0339  2B3B               	goto	u1011
+  1165  033A  2B3C               	goto	u1010
+  1166  033B                     u1011:
+  1167  033B  2B26               	goto	l54
+  1168  033C                     u1010:
+  1169                           	
+  1170  033C                     l55:	
+  1171                           	line	215
+  1172                           ;vision.c: 214: }
+  1173                           ;vision.c: 215: PORTB = 0;
+  1174  033C  1003               	clrc
+  1175                           	
+  1176  033D  3000               	movlw	0
+  1177  033E  1803               	btfsc	status,0
+  1178  033F  3001               	movlw	1
+  1179  0340  0086               	movwf	(6)	;volatile
+  1180                           	line	216
+  1181                           ;vision.c: 216: }
+  1182  0341                     l45:	
+  1183  0341  0008               	return
+  1184                           	psect	text55,local,class=CODE,delta=2
+  1185                           	opt stack 0
+  1186                           ; =============== function _leftturn ends =====
+                                 ==========
+  1187                           
+  1188                           GLOBAL __end_of_leftturn
+  1189  029A                     	__end_of_leftturn:
+  1190                           	FNSIZE	_leftturn,2,0
+  1191                           	signat	_leftturn,88
+  1192                           	global	_delay
+  1193                           	global	??_delay
+  1194                           	global	?_delay
+  1195                           
+  1196                           ; *************** function _delay *************
+                                 **
+  1197                           ; Defined at:
+  1198                           ;		line 127 in file "C:\Documents and Settings\
+                                 Neo\My Documents\mplab\vision\vision.c"
+  1199                           ; Parameters:
+  1200                           ;		i           	offs:   0	type: int 
+  1201                           ; Auto variables:
+  1202                           ;		n           	       	type: int 
+  1203                           ; Return value:
+  1204                           ;		type: void 
+  1205                           ;		size: 0
+  1206                           ; Registers used:
+  1207                           ;		wreg
+  1208                           ; Tracked objects:
+  1209                           ;		On entry : 100/0
+  1210                           ;		On exit  : 0/0
+  1211                           ;		Unchanged: 0/0
+  1212                           ; Data sizes:
+  1213                           ;		Autos:    2
+  1214                           ;		Params:   2
+  1215                           ;		Temp:     1
+  1216                           ;		Total:    5
+  1217                           ; This function calls:
+  1218                           ;		Nothing
+  1219                           ; This function is called by:
+  1220                           ;		_main
+  1221                           ;		_linefollow
+  1222                           ;		_rightturn
+  1223                           ;		_leftturn
+  1224                           ; This function uses a non-reentrant model
+  1225                           ; 
+  1226                           	file	"C:\Documents and Settings\Neo\My Documen
+                                 ts\mplab\vision\vision.c"
+  1227                           	line	127
+  1228                           ;vision.c: 127: void delay(int i){
+  1229                           	
+  1230  029A                     _delay:	
+  1231                           	opt stack 6
+  1232                           ; Regs used in _delay: [wreg]
+  1233                           	line	128
+  1234                           ;vision.c: 128: for(int n=0;n<i;n++);
+  1235  029A  3000               	movlw	low(0)
+  1236                           	
+  1237  029B  0096               	movwf	(_delay_n)
+  1238  029C  3000               	movlw	high(0)
+  1239  029D  0097               	movwf	((_delay_n))+1
+  1240  029E  2AA5               	goto	l22
+  1241                           	
+  1242  029F                     l19:	
+  1243                           	
+  1244  029F  3001               	movlw	low(01h)
+  1245  02A0  0796               	addwf	(_delay_n),f
+  1246  02A1  1803               	skipnc
+  1247  02A2  0A97               	incf	(_delay_n+1),f
+  1248  02A3  3000               	movlw	high(01h)
+  1249  02A4  0797               	addwf	(_delay_n+1),f
+  1250                           	
+  1251  02A5                     l22:	
+  1252                           	
+  1253                           	
+  1254  02A5  0817               	movf	(_delay_n+1),w
+  1255  02A6  3A80               	xorlw	80h
+  1256  02A7  0098               	movwf	(??_delay+2+0)
+  1257  02A8  0815               	movf	(_delay_i+1),w
+  1258  02A9  3A80               	xorlw	80h
+  1259  02AA  0218               	subwf	(??_delay+2+0),w
+  1260  02AB  1D03               	skipz
+  1261  02AC  2AAF               	goto	u9510
+  1262  02AD                     u9515:
+  1263  02AD  0814               	movf	(_delay_i),w
+  1264  02AE  0216               	subwf	(_delay_n),w
+  1265  02AF                     u9510:
+  1266                           
+  1267  02AF  1C03               	skipc
+  1268  02B0  2AB2               	goto	u951
+  1269  02B1  2AB3               	goto	u950
+  1270  02B2                     u951:
+  1271  02B2  2A9F               	goto	l19
+  1272  02B3                     u950:
+  1273                           	
+  1274  02B3                     l20:	
+  1275                           	line	129
+  1276                           ;vision.c: 129: }
+  1277  02B3                     l18:	
+  1278  02B3  0008               	return
+  1279                           	psect	text56,local,class=CODE,delta=2
+  1280                           	opt stack 0
+  1281                           ; =============== function _delay ends ========
+                                 =======
+  1282                           
+  1283                           GLOBAL __end_of_delay
+  1284  0065                     	__end_of_delay:
+  1285                           	FNSIZE	_delay,3,2
+  1286                           	signat	_delay,4216
+  1287                           	FNCALL	_main,_delay
+  1288                           	FNCALL	_main,_leftturn
+  1289                           	FNCALL	_main,_linefollow
+  1290                           	FNCALL	_main,_rightturn
+  1291                           	FNCALL	_main,_straight
+  1292                           	FNCALL	_rightturn,_delay
+  1293                           	FNCALL	_linefollow,_delay
+  1294                           	FNCALL	_leftturn,_delay
+  1295                           	FNROOT	_main
+  1296                           	psect	strings,class=CODE,delta=2,reloc=256
+  1297                           	global	_got
+  1298                           	psect	rbss_0,class=BANK0,space=1
+  1299                           
+  1300                           	DABS	1,76,2	;_got
+  1301  0000                     	_got	set	0x4C
+  1302                           
+  1303                           	global	_PORTA
+  1304  0000                     	_PORTA	set	0x5
+  1305                           
+  1306                           	global	_PORTB
+  1307  0000                     	_PORTB	set	0x6
+  1308                           
+  1309                           	global	_TRISA
+  1310  0000                     	_TRISA	set	0x85
+  1311                           
+  1312                           	global	_TRISB
+  1313  0000                     	_TRISB	set	0x86
+  1314                           
+  1315                           	PSECT	fnauto0,class=BANK0,space=1
+  1316                           	FNCONF	fnauto0,??,?
+  1317                           apbank macro
+  1318                           	bcf	status,5
+  1319                           	bcf	status,6
+  1320  000C                     	endm
+
+
+HI-TECH Software PICC Macro Assembler V9.65 build 4410 
+Symbol Table                                          Sat Apr 03 13:51:36 2010
+
+          __Lrbss_0 004C                   l2 0063                   l3 0021  
+                 l5 0025                   l7 002B                   l8 002C  
+         __Lrdata_0 0000           __Lramdata 0000                  l10 0032  
+                l20 02B3                  l12 004A                  l13 0038  
+                l22 02A5                  l30 0352                  l14 003B  
+                l23 03FF                  l31 0360                  l15 003E  
+                l32 036E                  l24 03DA                  l40 02B7  
+                l16 0041                  l33 037C                  l25 0343  
+                l41 02CD                  l17 0044                  l18 02B3  
+                l50 031C                  l26 03FF                  l34 038A  
+                l42 02DB                  l19 029F                  l51 030F  
+                l35 0398                  l43 02CE                  l52 0325  
+                l36 03A2                  l28 03AF                  l44 02E4  
+                l45 0341                  l53 0333                  l37 03AC  
+                l29 0344                  l54 0326                  l46 030E  
+                l38 02E9                  l55 033C                  l47 0301  
+                l39 02C4                  l48 02F4                  l56 0299  
+                l49 030A                  l57 0287                  l59 0299  
+               u910 03ED                 u911 03EC                 u920 03FF  
+               u921 03FE                 u930 002B                 u931 002A  
+               u940 0032                 u941 0031                 u950 02B3  
+               u951 02B2                 u960 02CD                 u961 02CC  
+               u970 02E4                 u971 02E3                 u980 02F3  
+               u981 02F2                 u990 030A                 u991 0309  
+         l600000148 03FF                 _got 004C        ??_linefollow 0010  
+           ??_delay 0016            __tempreg 000C                u1000 0325  
+              u1001 0324                u1010 033C                u1011 033B  
+              u1020 0299                u1021 0298                u9510 02AF  
+              u9515 02AD           __databank 0000            _main_dir 000C  
+              _main 000D            _leftturn 02EA                start 0000  
+         ?_leftturn 0010          ??_leftturn 0010               l30030 0050  
+             l30031 03D5               l30032 03BB               l30029 005E  
+             ?_main 000C       __end_of_delay 0065            _straight 0284  
+         ?_straight 0010               _PORTA 0005               _PORTB 0006  
+             _TRISA 0085               _TRISB 0086          ??_straight 0010  
+             _delay 029A               status 0003           _rightturn 02B4  
+ __end_of_rightturn 0284             _delay_i 0014             _delay_n 0016  
+            ??_main 000C          ?_rightturn 0010              ?_delay 0014  
+       ??_rightturn 0010        __end_of_main 0065    __end_of_leftturn 029A  
+  __end_of_straight 0342          _linefollow 0342  __end_of_linefollow 02EA  
+       ?_linefollow 0010           __Hrdata_0 0001           __Hramdata 0001  
+          __Hrbss_0 004E  

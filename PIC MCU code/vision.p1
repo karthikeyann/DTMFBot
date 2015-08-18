@@ -1,0 +1,538 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"2 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _PORTA `Vuc 1 e@5 ]
+"3 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _PORTB `Vuc 1 e@6 ]
+"4 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _TRISA `Vuc 1 e@133 ]
+"5 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _TRISB `Vuc 1 e@134 ]
+"16 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _got `i 1 e ]
+[p mainexit ]
+"11 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _delay `(v 0 ef1`i ]
+"13 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _leftturn `(v 0 ef ]
+"15 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _linefollow `(v 0 ef ]
+"12 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _rightturn `(v 0 ef ]
+"14 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _straight `(v 0 ef ]
+[; ;vision.c: 2: volatile unsigned char PORTA @ 0x05;
+[; ;vision.c: 3: volatile unsigned char PORTB @ 0x06;
+[; ;vision.c: 4: volatile unsigned char TRISA @ 0x85;
+[; ;vision.c: 5: volatile unsigned char TRISB @ 0x86;
+[; ;vision.c: 11: void delay(int i);
+[; ;vision.c: 12: void rightturn();
+[; ;vision.c: 13: void leftturn();
+[; ;vision.c: 14: void straight();
+[; ;vision.c: 15: void linefollow();
+[i _got
+"16 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+-> 0 `i
+]
+[; ;vision.c: 16: int got=0;
+"18
+[v _main `(v 1 ef ]
+{
+[; ;vision.c: 17: void main()
+[; ;vision.c: 18: {
+[e :U _main ]
+[f ]
+"19
+[v _dir `i 1 a ]
+[; ;vision.c: 19: int dir=0;
+[e = _dir -> 0 `i ]
+[; ;vision.c: 20: TRISB = 48;
+"20
+[e = _TRISB -> -> 48 `i `uc ]
+[; ;vision.c: 21: TRISA = 0x0F;
+"21
+[e = _TRISA -> -> 15 `i `uc ]
+[; ;vision.c: 22: PORTA = 0;
+"22
+[e = _PORTA -> -> 0 `i `uc ]
+[; ;vision.c: 23: PORTB = 0;
+"23
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 94: while(1){
+"94
+[e :U 3 ]
+{
+[; ;vision.c: 95: PORTB = 0|4;
+"95
+[e = _PORTB -> | -> 0 `i -> 4 `i `uc ]
+[; ;vision.c: 96: while((PORTB&48)!=0)
+"96
+[e $U 5  ]
+[e :U 6 ]
+[; ;vision.c: 97: {
+"97
+{
+"98
+}
+[e :U 5 ]
+"96
+[e $ != & -> _PORTB `i -> 48 `i -> 0 `i 6  ]
+[e :U 7 ]
+[; ;vision.c: 98: }
+[; ;vision.c: 99: while((PORTB&48)==0)
+"99
+[e $U 8  ]
+[e :U 9 ]
+[; ;vision.c: 100: {
+"100
+{
+"101
+}
+[e :U 8 ]
+"99
+[e $ == & -> _PORTB `i -> 48 `i -> 0 `i 9  ]
+[e :U 10 ]
+[; ;vision.c: 101: }
+[; ;vision.c: 102: delay(2);
+"102
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 103: switch((PORTB&48)){
+"103
+[e $U 12  ]
+{
+[; ;vision.c: 104: case 0:
+"104
+[e :U 13 ]
+[; ;vision.c: 105: PORTB = 0|4;
+"105
+[e = _PORTB -> | -> 0 `i -> 4 `i `uc ]
+[; ;vision.c: 106: break;
+"106
+[e $U 11  ]
+[; ;vision.c: 107: case 16:
+"107
+[e :U 14 ]
+[; ;vision.c: 108: leftturn();
+"108
+[e ( _leftturn ..  ]
+[; ;vision.c: 109: linefollow();
+"109
+[e ( _linefollow ..  ]
+[; ;vision.c: 110: break;
+"110
+[e $U 11  ]
+[; ;vision.c: 111: case 32:
+"111
+[e :U 15 ]
+[; ;vision.c: 112: rightturn();
+"112
+[e ( _rightturn ..  ]
+[; ;vision.c: 113: linefollow();
+"113
+[e ( _linefollow ..  ]
+[; ;vision.c: 114: break;
+"114
+[e $U 11  ]
+[; ;vision.c: 115: case 48:
+"115
+[e :U 16 ]
+[; ;vision.c: 116: straight();
+"116
+[e ( _straight ..  ]
+[; ;vision.c: 117: linefollow();
+"117
+[e ( _linefollow ..  ]
+[; ;vision.c: 118: break;
+"118
+[e $U 11  ]
+[; ;vision.c: 119: default:
+"119
+[e :U 17 ]
+[; ;vision.c: 120: PORTB = 0;
+"120
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 121: break;
+"121
+[e $U 11  ]
+"122
+}
+[; ;vision.c: 122: }
+[e $U 11  ]
+"103
+[e :U 12 ]
+[e [\ & -> _PORTB `i -> 48 `i , $ -> 0 `i 13
+ , $ -> 16 `i 14
+ , $ -> 32 `i 15
+ , $ -> 48 `i 16
+ 17 ]
+"122
+[e :U 11 ]
+"123
+}
+[e :U 2 ]
+"94
+[e $U 3  ]
+[e :U 4 ]
+[; ;vision.c: 123: }
+[; ;vision.c: 126: }
+"126
+[e :UE 1 ]
+}
+"127
+[v _delay `(v 1 ef1`i ]
+{
+[; ;vision.c: 127: void delay(int i){
+[e :U _delay ]
+[v _i `i 1 r1 ]
+[f ]
+[; ;vision.c: 128: for(int n=0;n<i;n++);
+"128
+{
+[v _n `i 1 a ]
+[e = _n -> 0 `i ]
+[e $U 22  ]
+[e :U 19 ]
+[e ++ _n -> 1 `i ]
+[e :U 22 ]
+[e $ < _n _i 19  ]
+[e :U 20 ]
+}
+[; ;vision.c: 129: }
+"129
+[e :UE 18 ]
+}
+"131
+[v _linefollow `(v 1 ef ]
+{
+[; ;vision.c: 131: void linefollow(){
+[e :U _linefollow ]
+[f ]
+[; ;vision.c: 132: while((((~PORTA)&14)!=14) && (((~PORTA)&14)!=12)){
+"132
+[e $U 24  ]
+[e :U 25 ]
+{
+[; ;vision.c: 133: switch(((~PORTA)&14)){
+"133
+[e $U 28  ]
+{
+[; ;vision.c: 134: case 0:
+"134
+[e :U 29 ]
+[; ;vision.c: 135: PORTB = 3;
+"135
+[e = _PORTB -> -> 3 `i `uc ]
+[; ;vision.c: 136: delay(2);
+"136
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 137: PORTB = 0;
+"137
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 138: break;
+"138
+[e $U 27  ]
+[; ;vision.c: 139: case 2:
+"139
+[e :U 30 ]
+[; ;vision.c: 140: PORTB = 3;
+"140
+[e = _PORTB -> -> 3 `i `uc ]
+[; ;vision.c: 141: delay(2);
+"141
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 142: PORTB = 0;
+"142
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 143: break;
+"143
+[e $U 27  ]
+[; ;vision.c: 144: case 4:
+"144
+[e :U 31 ]
+[; ;vision.c: 145: PORTB = 2;
+"145
+[e = _PORTB -> -> 2 `i `uc ]
+[; ;vision.c: 146: delay(2);
+"146
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 147: PORTB = 0;
+"147
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 148: break;
+"148
+[e $U 27  ]
+[; ;vision.c: 149: case 6:
+"149
+[e :U 32 ]
+[; ;vision.c: 150: PORTB = 2;
+"150
+[e = _PORTB -> -> 2 `i `uc ]
+[; ;vision.c: 151: delay(2);
+"151
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 152: PORTB = 0;
+"152
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 153: break;
+"153
+[e $U 27  ]
+[; ;vision.c: 154: case 8:
+"154
+[e :U 33 ]
+[; ;vision.c: 155: PORTB = 1;
+"155
+[e = _PORTB -> -> 1 `i `uc ]
+[; ;vision.c: 156: delay(2);
+"156
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 157: PORTB = 0;
+"157
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 158: break;
+"158
+[e $U 27  ]
+[; ;vision.c: 159: case 10:
+"159
+[e :U 34 ]
+[; ;vision.c: 160: PORTB = 1;
+"160
+[e = _PORTB -> -> 1 `i `uc ]
+[; ;vision.c: 161: delay(2);
+"161
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 162: PORTB = 0;
+"162
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 163: break;
+"163
+[e $U 27  ]
+[; ;vision.c: 164: case 12:
+"164
+[e :U 35 ]
+[; ;vision.c: 167: got= 1;
+"167
+[e = _got -> 1 `i ]
+[; ;vision.c: 168: PORTB = 0;
+"168
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 169: break;
+"169
+[e $U 27  ]
+[; ;vision.c: 170: case 14:
+"170
+[e :U 36 ]
+[; ;vision.c: 171: PORTB = 0;
+"171
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 172: got = 0;
+"172
+[e = _got -> 0 `i ]
+[; ;vision.c: 174: break;
+"174
+[e $U 27  ]
+[; ;vision.c: 175: default :
+"175
+[e :U 37 ]
+[; ;vision.c: 176: PORTB = 8;
+"176
+[e = _PORTB -> -> 8 `i `uc ]
+"177
+}
+[; ;vision.c: 177: }
+[e $U 27  ]
+"133
+[e :U 28 ]
+[e [\ & ~ -> _PORTA `i -> 14 `i , $ -> 0 `i 29
+ , $ -> 2 `i 30
+ , $ -> 4 `i 31
+ , $ -> 6 `i 32
+ , $ -> 8 `i 33
+ , $ -> 10 `i 34
+ , $ -> 12 `i 35
+ , $ -> 14 `i 36
+ 37 ]
+"177
+[e :U 27 ]
+"178
+}
+[e :U 24 ]
+"132
+[e $ && != & ~ -> _PORTA `i -> 14 `i -> 14 `i != & ~ -> _PORTA `i -> 14 `i -> 12 `i 25  ]
+[e :U 26 ]
+[; ;vision.c: 178: }
+[; ;vision.c: 179: }
+"179
+[e :UE 23 ]
+}
+"180
+[v _rightturn `(v 1 ef ]
+{
+[; ;vision.c: 180: void rightturn(){
+[e :U _rightturn ]
+[f ]
+[; ;vision.c: 181: PORTB = 2;
+"181
+[e = _PORTB -> -> 2 `i `uc ]
+[; ;vision.c: 182: while(((~PORTA)&2)!=0){
+"182
+[e $U 39  ]
+[e :U 40 ]
+{
+[; ;vision.c: 183: PORTB = 2;
+"183
+[e = _PORTB -> -> 2 `i `uc ]
+[; ;vision.c: 184: delay(2);
+"184
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 185: PORTB = 0;
+"185
+[e = _PORTB -> -> 0 `i `uc ]
+"186
+}
+[e :U 39 ]
+"182
+[e $ != & ~ -> _PORTA `i -> 2 `i -> 0 `i 40  ]
+[e :U 41 ]
+[; ;vision.c: 186: }
+[; ;vision.c: 187: while(((~PORTA)&2)==0){
+"187
+[e $U 42  ]
+[e :U 43 ]
+{
+[; ;vision.c: 188: PORTB = 2;
+"188
+[e = _PORTB -> -> 2 `i `uc ]
+[; ;vision.c: 189: delay(2);
+"189
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 190: PORTB = 0;
+"190
+[e = _PORTB -> -> 0 `i `uc ]
+"191
+}
+[e :U 42 ]
+"187
+[e $ == & ~ -> _PORTA `i -> 2 `i -> 0 `i 43  ]
+[e :U 44 ]
+[; ;vision.c: 191: }
+[; ;vision.c: 192: PORTB = 0;
+"192
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 193: }
+"193
+[e :UE 38 ]
+}
+"194
+[v _leftturn `(v 1 ef ]
+{
+[; ;vision.c: 194: void leftturn(){
+[e :U _leftturn ]
+[f ]
+[; ;vision.c: 195: PORTB = 1;
+"195
+[e = _PORTB -> -> 1 `i `uc ]
+[; ;vision.c: 196: if (got ==1){
+"196
+[e $ ! == _got -> 1 `i 46  ]
+{
+[; ;vision.c: 197: while(((~PORTA)&2)==0){
+"197
+[e $U 47  ]
+[e :U 48 ]
+{
+[; ;vision.c: 198: PORTB = 1;
+"198
+[e = _PORTB -> -> 1 `i `uc ]
+[; ;vision.c: 199: delay(2);
+"199
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 200: PORTB = 0;
+"200
+[e = _PORTB -> -> 0 `i `uc ]
+"201
+}
+[e :U 47 ]
+"197
+[e $ == & ~ -> _PORTA `i -> 2 `i -> 0 `i 48  ]
+[e :U 49 ]
+[; ;vision.c: 201: }
+[; ;vision.c: 202: got=0;
+"202
+[e = _got -> 0 `i ]
+"203
+}
+[e :U 46 ]
+[; ;vision.c: 203: }
+[; ;vision.c: 205: while(((~PORTA)&2)!=0){
+"205
+[e $U 50  ]
+[e :U 51 ]
+{
+[; ;vision.c: 206: PORTB = 1;
+"206
+[e = _PORTB -> -> 1 `i `uc ]
+[; ;vision.c: 207: delay(2);
+"207
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 208: PORTB = 0;
+"208
+[e = _PORTB -> -> 0 `i `uc ]
+"209
+}
+[e :U 50 ]
+"205
+[e $ != & ~ -> _PORTA `i -> 2 `i -> 0 `i 51  ]
+[e :U 52 ]
+[; ;vision.c: 209: }
+[; ;vision.c: 210: while(((~PORTA)&2)==0){
+"210
+[e $U 53  ]
+[e :U 54 ]
+{
+[; ;vision.c: 211: PORTB = 1;
+"211
+[e = _PORTB -> -> 1 `i `uc ]
+[; ;vision.c: 212: delay(2);
+"212
+[e ( _delay (1 -> 2 `i ]
+[; ;vision.c: 213: PORTB = 0;
+"213
+[e = _PORTB -> -> 0 `i `uc ]
+"214
+}
+[e :U 53 ]
+"210
+[e $ == & ~ -> _PORTA `i -> 2 `i -> 0 `i 54  ]
+[e :U 55 ]
+[; ;vision.c: 214: }
+[; ;vision.c: 215: PORTB = 0;
+"215
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;vision.c: 216: }
+"216
+[e :UE 45 ]
+}
+"217
+[v _straight `(v 1 ef ]
+{
+[; ;vision.c: 217: void straight(){
+[e :U _straight ]
+[f ]
+[; ;vision.c: 218: PORTB = 3;
+"218
+[e = _PORTB -> -> 3 `i `uc ]
+[; ;vision.c: 219: while(((~PORTA)&12)==12){
+"219
+[e $U 57  ]
+[e :U 58 ]
+{
+"220
+}
+[e :U 57 ]
+"219
+[e $ == & ~ -> _PORTA `i -> 12 `i -> 12 `i 58  ]
+[e :U 59 ]
+[; ;vision.c: 220: }
+[; ;vision.c: 221: }
+"221
+[e :UE 56 ]
+}

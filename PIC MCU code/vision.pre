@@ -1,0 +1,152 @@
+
+# 1 "C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c"
+
+volatile unsigned char PORTA @ 0x05;
+volatile unsigned char PORTB @ 0x06;
+volatile unsigned char TRISA @ 0x85;
+volatile unsigned char TRISB @ 0x86;
+
+# 11
+void delay(int i);
+void rightturn();
+void leftturn();
+void straight();
+void linefollow();
+int got=0;
+void main()
+{
+int dir=0;
+TRISB = 48;
+TRISA = 0x0F;
+PORTA = 0;
+PORTB = 0;
+
+# 94
+while(1){
+PORTB = 0|4;
+while((PORTB&48)!=0)
+{
+}
+while((PORTB&48)==0)
+{
+}
+delay(2);
+switch((PORTB&48)){
+case 0:
+PORTB = 0|4;
+break;
+case 16:
+leftturn();
+linefollow();
+break;
+case 32:
+rightturn();
+linefollow();
+break;
+case 48:
+straight();
+linefollow();
+break;
+default:
+PORTB = 0;
+break;
+}
+}
+
+
+}
+void delay(int i){
+for(int n=0;n<i;n++);
+}
+
+void linefollow(){
+while((((~PORTA)&14)!=14) && (((~PORTA)&14)!=12)){
+switch(((~PORTA)&14)){
+case 0:
+PORTB = 3;
+delay(2);
+PORTB = 0;
+break;
+case 2:
+PORTB = 3;
+delay(2);
+PORTB = 0;
+break;
+case 4:
+PORTB = 2;
+delay(2);
+PORTB = 0;
+break;
+case 6:
+PORTB = 2;
+delay(2);
+PORTB = 0;
+break;
+case 8:
+PORTB = 1;
+delay(2);
+PORTB = 0;
+break;
+case 10:
+PORTB = 1;
+delay(2);
+PORTB = 0;
+break;
+case 12:
+
+
+got= 1;
+PORTB = 0;
+break;
+case 14:
+PORTB = 0;
+got = 0;
+
+break;
+default :
+PORTB = 8;
+}
+}
+}
+void rightturn(){
+PORTB = 2;
+while(((~PORTA)&2)!=0){
+PORTB = 2;
+delay(2);
+PORTB = 0;
+}
+while(((~PORTA)&2)==0){
+PORTB = 2;
+delay(2);
+PORTB = 0;
+}
+PORTB = 0;
+}
+void leftturn(){
+PORTB = 1;
+if (got ==1){
+while(((~PORTA)&2)==0){
+PORTB = 1;
+delay(2);
+PORTB = 0;
+}
+got=0;
+}
+
+while(((~PORTA)&2)!=0){
+PORTB = 1;
+delay(2);
+PORTB = 0;
+}
+while(((~PORTA)&2)==0){
+PORTB = 1;
+delay(2);
+PORTB = 0;
+}
+PORTB = 0;
+}
+void straight(){
+PORTB = 3;
+while(((~PORTA)&12)==12){
+}
+}

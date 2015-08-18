@@ -1,0 +1,190 @@
+HI-TECH Software C Compiler 
+
+Linker command line:
+
+--edf=C:\Program Files\HI-TECH Software\PICC\PRO\9.65\dat\en_msgs.txt -cs \
+  -h+vision.sym -z -Q16F84A -ol.obj -Mvision.map -E1 -ACODE=00h-03FFh \
+  -ACONST=00h-0FFhx4 -AENTRY=00h-0FFhx4 -ASTRING=00h-0FFhx4 -ARAM=0Ch-04Dh \
+  -AABS1=0Ch-04Fh -ABANK0=0Ch-04Dh -ACOMMON=04Eh-04Fh \
+  -preset_vec=00h,intentry,intcode,intret,init,init23,end_init,clrtext,maintext,pstrings \
+  -pstrings=CODE -ppowerup=CODE -ptemp=BANK0 \
+  -prbss_0=BANK0,rbit_0=BANK0,rdata_0=BANK0,idata_0=CODE -pnvram=BANK0 \
+  -pidata=CODE -pfnauto0=BANK0 -ACONFIG=02007h-02007h -pconfig=CONFIG \
+  -DCONFIG=2 -AIDLOC=02000h-02003h -pidloc=IDLOC -DIDLOC=2 \
+  -AEEDATA=00h-03Fh/02100h -peeprom_data=EEDATA -DEEDATA=2 \
+  -pfloat_text0=CODE,float_text1=CODE,float_text2=CODE \
+  -pfloat_text3=CODE,float_text4=CODE -DCODE=2 startup.obj vision.obj 
+
+Object code version is 3.10
+
+Machine type is 16F84A
+
+Call graph: (short form)
+
+
+
+
+                Name          Link     Load   Length Selector   Space       Scale
+startup.obj     clrtext          5        5        8       0     0
+                init             0        0        4       0     0
+                end_init         4        4        1       0     0
+vision.obj      maintext         D        D       58       0     0
+                text55         29A      29A       1A     534     0
+                text54         2EA      2EA       58     5D4     0
+                text51         2B4      2B4       36     568     0
+                text53         342      342       BE     684     0
+                text52         284      284       16     508     0
+
+COMMON          fnauto0          C        C        D       C     1
+
+TOTAL           Name          Link     Load   Length     Space
+        CLASS   CODE           
+                maintext         D        D       58     0
+                clrtext          5        5        8     0
+                init             0        0        4     0
+                end_init         4        4        1     0
+                text55         29A      29A       1A     0
+                text54         2EA      2EA       58     0
+                text51         2B4      2B4       36     0
+                text53         342      342       BE     0
+                text52         284      284       16     0
+
+        CLASS   CONST          
+
+        CLASS   ENTRY          
+
+        CLASS   STRING         
+
+        CLASS   RAM            
+
+        CLASS   ABS1           
+                abs_s1          4C       4C        2     1
+
+        CLASS   BANK0          
+                fnauto0          C        C        D     1
+
+        CLASS   COMMON         
+
+        CLASS   CONFIG         
+
+        CLASS   IDLOC          
+
+        CLASS   EEDATA         
+
+        CLASS   BANK3          
+
+        CLASS   BANK2          
+
+        CLASS   BANK1          
+
+
+
+SEGMENTS        Name            Load    Length   Top    Selector    Space      Class      Delta
+
+                reset_vec       000000  000065  000065         0       0  CODE        2
+                temp            00000C  00000D  000019         C       1  BANK0       1
+                text52          000284  000016  00029A       508       0  CODE        2
+                text55          00029A  00001A  0002B4       534       0  CODE        2
+                text51          0002B4  000036  0002EA       568       0  CODE        2
+                text54          0002EA  000058  000342       5D4       0  CODE        2
+                text53          000342  0000BE  000400       684       0  CODE        2
+
+
+UNUSED ADDRESS RANGES
+
+        BANK0            0019-004B     1
+        CODE             0065-0283     2
+        CONFIG           2007-2007     2
+        CONST            00CA-03FF     1
+        EEDATA           2100-213F     2
+        ENTRY            00CA-03FF     1
+        IDLOC            2000-2003     2
+        STRING           00CA-03FF     1
+
+                                  Symbol Table
+
+??_delay            fnauto0     0016  ??_leftturn         fnauto0     0010
+??_linefollow       fnauto0     0010  ??_main             fnauto0     000C
+??_rightturn        fnauto0     0010  ??_straight         fnauto0     0010
+?_delay             fnauto0     0014  ?_leftturn          fnauto0     0010
+?_linefollow        fnauto0     0010  ?_main              fnauto0     000C
+?_rightturn         fnauto0     0010  ?_straight          fnauto0     0010
+_PORTA              (abs)       0005  _PORTB              (abs)       0006
+_TRISA              (abs)       0085  _TRISB              (abs)       0086
+__Beeprom_data      eeprom_data 2100  __Bnvbit_0          nvbit_0     00CA
+__Bnvbit_1          nvbit_1     00CA  __Bnvbit_2          nvbit_2     00CA
+__Bnvbit_3          nvbit_3     00CA  __Bptbit_0          ptbit_0     00CA
+__Brbit_0           rbit_0      000C  __Brbit_1           rbit_1      00CA
+__Brbit_2           rbit_2      00CA  __Brbit_3           rbit_3      00CA
+__Hclrtext          clrtext     000D  __Hcode             code        00CA
+__Hconfig           config      2007  __Heeprom_data      eeprom_data 0000
+__Hend_init         end_init    0005  __Hfloat_text0      float_text0 0065
+__Hfloat_text1      float_text1 0065  __Hfloat_text2      float_text2 0065
+__Hfloat_text3      float_text3 0065  __Hfloat_text4      float_text4 0065
+__Hfnauto0          fnauto0     0019  __Hidata            idata       0065
+__Hidata_0          idata_0     0065  __Hidata_1          idata_1     00CA
+__Hidata_2          idata_2     00CA  __Hidata_3          idata_3     00CA
+__Hidloc            idloc       2000  __Hinit             init        0004
+__Hinit23           init23      0004  __Hintcode          intcode     0000
+__Hintentry         intentry    0000  __Hintret           intret      0000
+__Hintsave          intsave     00CA  __Hintsave_1        intsave_1   00CA
+__Hintsave_2        intsave_2   00CA  __Hintsave_3        intsave_3   00CA
+__Hmaintext         maintext    0065  __Hnvbit_0          nvbit_0     0650
+__Hnvbit_1          nvbit_1     0650  __Hnvbit_2          nvbit_2     0650
+__Hnvbit_3          nvbit_3     0650  __Hnvram            nvram       000C
+__Hnvram_1          nvram_1     00CA  __Hnvram_2          nvram_2     00CA
+__Hnvram_3          nvram_3     00CA  __Hpowerup          powerup     0065
+__Hpstrings         pstrings    0065  __Hptbit_0          ptbit_0     0650
+__Hramdata          (abs)       0001  __Hrbit_0           rbit_0      0060
+__Hrbit_1           rbit_1      0650  __Hrbit_2           rbit_2      0650
+__Hrbit_3           rbit_3      0650  __Hrbss_0           (abs)       004E
+__Hrbss_1           rbss_1      00CA  __Hrbss_2           rbss_2      00CA
+__Hrbss_3           rbss_3      00CA  __Hrdata_0          (abs)       0001
+__Hrdata_1          rdata_1     00CA  __Hrdata_2          rdata_2     00CA
+__Hrdata_3          rdata_3     00CA  __Hreset_vec        reset_vec   0000
+__Hstrings          strings     0100  __Hstruct           struct      0019
+__Htemp             temp        000C  __Htext             text        00CA
+__Lclrtext          clrtext     0005  __Lcode             code        00CA
+__Lconfig           config      2007  __Leeprom_data      eeprom_data 0000
+__Lend_init         end_init    0004  __Lfloat_text0      float_text0 0065
+__Lfloat_text1      float_text1 0065  __Lfloat_text2      float_text2 0065
+__Lfloat_text3      float_text3 0065  __Lfloat_text4      float_text4 0065
+__Lfnauto0          fnauto0     000C  __Lidata            idata       0065
+__Lidata_0          idata_0     0065  __Lidata_1          idata_1     00CA
+__Lidata_2          idata_2     00CA  __Lidata_3          idata_3     00CA
+__Lidloc            idloc       2000  __Linit             init        0000
+__Linit23           init23      0004  __Lintcode          intcode     0000
+__Lintentry         intentry    0000  __Lintret           intret      0000
+__Lintsave          intsave     00CA  __Lintsave_1        intsave_1   00CA
+__Lintsave_2        intsave_2   00CA  __Lintsave_3        intsave_3   00CA
+__Lmaintext         maintext    000D  __Lnvbit_0          nvbit_0     0650
+__Lnvbit_1          nvbit_1     0650  __Lnvbit_2          nvbit_2     0650
+__Lnvbit_3          nvbit_3     0650  __Lnvram            nvram       000C
+__Lnvram_1          nvram_1     00CA  __Lnvram_2          nvram_2     00CA
+__Lnvram_3          nvram_3     00CA  __Lpowerup          powerup     0065
+__Lpstrings         pstrings    0065  __Lptbit_0          ptbit_0     0650
+__Lramdata          (abs)       0000  __Lrbit_0           rbit_0      0060
+__Lrbit_1           rbit_1      0650  __Lrbit_2           rbit_2      0650
+__Lrbit_3           rbit_3      0650  __Lrbss_0           (abs)       004C
+__Lrbss_1           rbss_1      00CA  __Lrbss_2           rbss_2      00CA
+__Lrbss_3           rbss_3      00CA  __Lrdata_0          (abs)       0000
+__Lrdata_1          rdata_1     00CA  __Lrdata_2          rdata_2     00CA
+__Lrdata_3          rdata_3     00CA  __Lreset_vec        reset_vec   0000
+__Lstrings          strings     0100  __Lstruct           struct      0019
+__Ltemp             temp        000C  __Ltext             text        00CA
+__S0                (abs)       2007  __S1                (abs)       0019
+__S2                (abs)       2100  __databank          (abs)       0000
+__end_of_delay      text56      0065  __end_of_leftturn   text55      029A
+__end_of_linefollow text54      02EA  __end_of_main       maintext    0065
+__end_of_rightturn  text52      0284  __end_of_straight   text53      0342
+__tempreg           (abs)       000C  _delay              text55      029A
+_delay_i            fnauto0     0014  _delay_n            fnauto0     0016
+_exit               init        0000  _got                (abs)       004C
+_leftturn           text54      02EA  _linefollow         text53      0342
+_main               maintext    000D  _main_dir           fnauto0     000C
+_rightturn          text51      02B4  _straight           text52      0284
+clear_ram           clrtext     0005  intlevel0           intentry    0000
+intlevel1           intentry    0000  intlevel2           intentry    0000
+intlevel3           intentry    0000  intlevel4           intentry    0000
+intlevel5           intentry    0000  reset_vec           reset_vec   0000
+start               init        0000  

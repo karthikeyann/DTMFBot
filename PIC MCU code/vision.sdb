@@ -1,0 +1,62 @@
+[p AUTOSTATIC PIC14 PICMIDHI PICLOMID LITE_MODE ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F84A ]
+"18 C:\Documents and Settings\Neo\My Documents\mplab\vision\vision.c
+[v _main `(v  1 e 0 0 ]
+"127
+[v _delay `(v  1 e 0 0 ]
+"131
+[v _linefollow `(v  1 e 0 0 ]
+"180
+[v _rightturn `(v  1 e 0 0 ]
+"194
+[v _leftturn `(v  1 e 0 0 ]
+"217
+[v _straight `(v  1 e 0 0 ]
+"2
+[v _PORTA `Vuc  1 e 1 @5 ]
+"3
+[v _PORTB `Vuc  1 e 1 @6 ]
+"4
+[v _TRISA `Vuc  1 e 1 @133 ]
+"5
+[v _TRISB `Vuc  1 e 1 @134 ]
+"16
+[v _got `i  1 e 2 @76 ]
+"18
+[v _main `(v  1 e 0 0 ]
+{
+"19
+[v _main_dir `i  1 a 2 0 ]
+"126
+} 2
+"180
+[v _rightturn `(v  1 e 0 0 ]
+{
+"193
+} 0
+"217
+[v _straight `(v  1 e 0 0 ]
+{
+"221
+} 0
+"131
+[v _linefollow `(v  1 e 0 0 ]
+{
+"179
+} 0
+"194
+[v _leftturn `(v  1 e 0 0 ]
+{
+"216
+} 0
+"127
+[v _delay `(v  1 e 0 0 ]
+{
+"128
+[v _delay_n `i  1 a 2 0 ]
+"127
+[v _delay_i `i  1 p 2 0 ]
+"129
+} 2
